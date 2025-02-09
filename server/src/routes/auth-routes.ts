@@ -5,6 +5,30 @@ import bcrypt from 'bcrypt';
 
 export const login = async (req: Request, res: Response) => {
   // TODO: If the user exists and the password is correct, return a JWT token
+  const { username, password } = req.body;
+
+  // Finding user in DB
+  const user = await User.findOne({
+    where: { username },
+  });
+
+  // Send message if user is not found
+  if(!user){
+    return res.status(401).json({ message: 'Authentication failed'})
+  };
+
+  // Password comparison between user provided and hashed
+  const passwordIsValid = await bcrypt.compare(password, user.password);
+  if(!passwordIsValid){
+    return res.status(401).json({message: 'Authentication failed.'});
+  }
+
+  // Obtaining the secret key
+  const secretKey = process.env.JWT_SECRET_KEY || '';
+
+  // Generating a JWT
+  const token = jwt.sign({username}, secretKey, {expiresIn: '2m'});
+  return res.json({token});
 };
 
 const router = Router();

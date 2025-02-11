@@ -8,7 +8,8 @@ import routes from './routes/index.js';
 import { sequelize } from './models/index.js';
 
 // Extra configuration for Render Deployment, using Neon
-const { Pool } = require('pg');
+// const { Pool } = require('pg');
+import { Pool } from 'pg';
 
 const pool = new Pool({
     connectionString: process.env.DATABASE_URL,

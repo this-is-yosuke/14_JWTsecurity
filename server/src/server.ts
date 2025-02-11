@@ -17,9 +17,17 @@ const pool = new Pool({
     }
 });
 
-pool.connect()
-    .then(() => console.log('✅ Connected to PostgreSQL'))
-    .catch(err => console.error('❌ Database connection error:', err));
+// pool.connect()
+//     .then(() => console.log('✅ Connected to PostgreSQL'))
+//     .catch(err => console.error('❌ Database connection error:', err));
+try{
+  pool.connect()
+  .then(() => console.log('✅ Connected to PostgreSQL'))
+}catch (err){
+  console.error('❌ Database connection error:', err);
+}
+  
+
 
 const app = express();
 const PORT = process.env.PORT || 3001;

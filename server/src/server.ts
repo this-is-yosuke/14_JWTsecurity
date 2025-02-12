@@ -7,29 +7,6 @@ import express from 'express';
 import routes from './routes/index.js';
 import { sequelize } from './models/index.js';
 
-// Extra configuration for Render Deployment, using Neon
-// const { Pool } = require('pg');
-// import { Pool } from 'pg';
-
-// const pool = new Pool({
-//     connectionString: process.env.DATABASE_URL,
-//     ssl: {
-//         rejectUnauthorized: false // Most cloud providers require SSL
-//     }
-// });
-
-// pool.connect()
-//     .then(() => console.log('✅ Connected to PostgreSQL'))
-//     .catch(err => console.error('❌ Database connection error:', err));
-// try{
-//   pool.connect()
-//   .then(() => console.log('✅ Connected to PostgreSQL'))
-// }catch (err){
-//   console.error('❌ Database connection error:', err);
-// }
-  
-
-
 const app = express();
 const PORT = process.env.PORT || 3001;
 

@@ -27,7 +27,8 @@ export const login = async (req: Request, res: Response) => {
   const secretKey = process.env.JWT_SECRET_KEY || '';
 
   // Generating a JWT
-  const token = jwt.sign({username}, secretKey, {expiresIn: '2m'});
+  const token = jwt.sign({username}, secretKey, {expiresIn: '5m'});
+  console.log("Your JWT expires in 5 minutes, by the way");
   return res.json({token});
 };
 
